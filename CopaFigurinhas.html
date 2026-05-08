@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Álbum Copa 2026 🏆</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #22c55e;
+    --verde-dark: #16a34a;
+    --verde-glow: rgba(34,197,94,0.35);
+    --amarelo: #facc15;
+    --azul: #3b82f6;
+    --cinza: #1a1a2e;
+    --cinza2: #242438;
+    --cinza3: #32324c;
+    --texto: #e2e8f0;
+    --texto2: #94a3b8;
+    --borda: #3f3f5a;
+    --repetida: #f59e0b;
+    --vermelho: #ef4444;
+    --roxo: #7c3aed;
+    --radius: 12px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    background: #0e0e1c;
+    color: var(--texto);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overscroll-behavior: none;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    background: linear-gradient(180deg, #0c0c1e 0%, #141428 100%);
+    border-bottom: 2px solid rgba(250,204,21,0.4);
+    padding: 12px 14px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .header-row1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--amarelo);
+    letter-spacing: 2px;
+    line-height: 1;
+    text-shadow: 0 0 16px rgba(250,204,21,0.5);
+  }
+  .logo span { color: #fff; }
+
+  .header-btns {
+    display: flex;
+    gap: 6px;
+  }
+
+  .hbtn {
+    background: var(--cinza3);
+    border: 1px solid var(--borda);
+    color: var(--texto2);
+    padding: 7px 11px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .hbtn:active { opacity: 0.7; transform: scale(0.95); }
+  .hbtn.verde { border-color: var(--verde); color: var(--verde); }
+  .hbtn.azul  { border-color: var(--azul); color: var(--azul); }
+  .hbtn.red   { border-color: #ef444455; color: #ef4444aa; }
+
+  /* search */
+  .search-row {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .search-row input {
+    background: var(--cinza2);
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    padding: 9px 14px 9px 36px;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    font-family: 'Barlow', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .search-row input:focus { border-color: var(--amarelo); }
+  .search-row input::placeholder { color: var(--texto2); }
+  .s-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  /* stats pills */
+  .stats-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .stats-row::-webkit-scrollbar { display: none; }
+
+  .stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--cinza2);
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-total { background: var(--amarelo); }
+  .dot-unica { background: var(--verde); }
+  .dot-rep   { background: var(--repetida); }
+  .stat-pill strong { font-weight: 700; font-size: 14px; }
+
+  .pct-pill {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(250,204,21,0.08);
+    border: 1px solid rgba(250,204,21,0.2);
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 12px;
+    white-space: nowrap;
+    color: var(--amarelo);
+    font-weight: 700;
+  }
+
+  /* progress */
+  .progress-bar {
+    height: 4px;
+    background: var(--cinza3);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--verde), var(--amarelo));
+    border-radius: 99px;
+    transition: width 0.4s ease;
+    min-width: 0;
+  }
+
+  /* ========== MAIN ========== */
+  main {
+    padding: 12px 12px calc(80px + var(--safe-bottom));
+  }
+
+  /* legenda compacta */
+  .legenda {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 9px 12px;
+    background: var(--cinza2);
+    border-radius: 10px;
+    border: 1px solid var(--borda);
+    font-size: 11px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .legenda::-webkit-scrollbar { display: none; }
+  .leg-lbl { color: var(--texto2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+  .legenda-item { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+  .leg-box {
+    width: 26px; height: 20px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700;
+  }
+  .leg-vazia { background: var(--cinza3); border: 1px solid var(--borda); }
+  .leg-unica { background: var(--verde); color: #fff; }
+  .leg-2x    { background: var(--repetida); color: #fff; }
+  .leg-3x    { background: var(--vermelho); color: #fff; }
+  .leg-hint  { color: var(--texto2); font-size: 10px; margin-left: 4px; flex-shrink: 0; }
+
+  /* ========== SECTION ========== */
+  .secao { margin-bottom: 18px; }
+
+  .grupo-sep {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--amarelo);
+    text-transform: uppercase;
+    padding: 3px 10px;
+    background: rgba(250,204,21,0.07);
+    border-left: 3px solid var(--amarelo);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 10px;
+    margin-top: 6px;
+    display: inline-block;
+  }
+
+  .secao-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 10px;
+    background: var(--cinza2);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    transition: background 0.15s;
+  }
+  .secao-header:active { background: var(--cinza3); }
+
+  .secao-flag  { font-size: 20px; line-height: 1; flex-shrink: 0; }
+  .secao-titulo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+  }
+  .secao-sigla {
+    font-size: 10px;
+    color: var(--texto2);
+    background: var(--cinza3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .secao-grupo {
+    font-size: 10px;
+    color: var(--amarelo);
+    background: rgba(250,204,21,0.1);
+    border: 1px solid rgba(250,204,21,0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .secao-prog {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--texto2);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .secao-prog strong { color: var(--verde); }
+  .secao-toggle {
+    color: var(--texto2);
+    font-size: 12px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .secao-toggle.open { transform: rotate(0deg); }
+  .secao-toggle:not(.open) { transform: rotate(180deg); }
+
+  /* grid */
+  .figurinhas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    gap: 5px;
+    padding: 4px 0;
+  }
+  .figurinhas-grid.collapsed { display: none; }
+
+  /* ========== FIGURINHA BTN ========== */
+  .fig-btn {
+    position: relative;
+    height: 48px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--cinza3);
+    color: var(--texto2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    line-height: 1.2;
+    transition: transform 0.1s ease, background 0.15s ease;
+    touch-action: manipulation;
+  }
+
+  .fig-btn:active { transform: scale(0.88); }
+
+  .fig-btn.count-1 {
+    background: var(--verde);
+    color: #fff;
+    box-shadow: 0 0 10px var(--verde-glow);
+  }
+  .fig-btn.count-2 {
+    background: var(--repetida);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(245,158,11,0.3);
+  }
+  .fig-btn.count-3 {
+    background: var(--vermelho);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(239,68,68,0.3);
+  }
+  .fig-btn.count-4,
+  .fig-btn.count-5 {
+    background: var(--roxo);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(124,58,237,0.3);
+  }
+
+  .fig-btn[data-count]:not([data-count="0"])::after {
+    content: attr(data-count) "×";
+    position: absolute;
+    top: 2px; right: 3px;
+    font-size: 8px;
+    opacity: 0.9;
+    font-weight: 700;
+  }
+  .fig-btn[data-count="1"]::after { display: none; }
+
+  .fig-num { font-size: 11px; font-weight: 700; }
+
+  .fig-btn.especial {
+    border: 1px solid rgba(250,204,21,0.3);
+  }
+  .fig-btn.especial.count-0 {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+  }
+  .fig-btn.especial.count-1 {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-color: var(--amarelo);
+  }
+
+  /* ========== BOTTOM NAV (STICKY STATS) ========== */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--cinza);
+    border-top: 1px solid var(--borda);
+    padding: 10px 14px calc(10px + var(--safe-bottom));
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+  }
+
+  .bb-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    flex: 1;
+  }
+  .bb-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  .bb-lbl { font-size: 9px; color: var(--texto2); text-transform: uppercase; letter-spacing: 0.5px; }
+  .bb-val-total { color: var(--amarelo); }
+  .bb-val-unica { color: var(--verde); }
+  .bb-val-rep   { color: var(--repetida); }
+
+  .bb-divider { width: 1px; height: 32px; background: var(--borda); flex-shrink: 0; }
+
+  .bb-pct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    flex: 1;
+  }
+  .bb-pct-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--amarelo);
+    line-height: 1;
+  }
+  .bb-pct-lbl { font-size: 9px; color: var(--texto2); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ========== BOTTOM SHEET (context menu mobile) ========== */
+  .sheet-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 400;
+    display: none;
+    align-items: flex-end;
+  }
+  .sheet-overlay.open { display: flex; }
+
+  .sheet-box {
+    background: var(--cinza);
+    border: 1px solid var(--borda);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    padding: 8px 16px calc(20px + var(--safe-bottom));
+    width: 100%;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.7);
+  }
+
+  .sheet-handle {
+    width: 36px; height: 4px;
+    background: var(--borda);
+    border-radius: 99px;
+    margin: 0 auto 14px;
+  }
+
+  .sheet-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--amarelo);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .sheet-sub {
+    font-size: 12px;
+    color: var(--texto2);
+    margin-bottom: 16px;
+  }
+  .sheet-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: var(--cinza2);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 14px 20px;
+    margin-bottom: 14px;
+  }
+  .sheet-minus, .sheet-plus {
+    width: 44px; height: 44px;
+    border-radius: 99px;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.1s;
+  }
+  .sheet-minus:active, .sheet-plus:active { transform: scale(0.88); }
+  .sheet-minus { background: var(--cinza3); color: var(--texto2); }
+  .sheet-plus  { background: var(--verde); color: #fff; }
+  .sheet-count-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    color: #fff;
+    min-width: 50px;
+    text-align: center;
+  }
+  .sheet-count-label { font-size: 11px; color: var(--texto2); text-align: center; margin-top: -6px; }
+
+  .sheet-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .sheet-action-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    transition: opacity 0.15s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .sheet-action-btn:active { opacity: 0.7; transform: scale(0.97); }
+  .btn-cancel { background: var(--cinza3); color: var(--texto2); border: 1px solid var(--borda); }
+  .btn-set1   { background: rgba(34,197,94,0.15); color: var(--verde); border: 1px solid var(--verde); }
+  .btn-zero   { background: rgba(239,68,68,0.1); color: var(--vermelho); border: 1px solid var(--vermelho); }
+
+  /* ========== MODAL IMPORT/EXPORT ========== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 500;
+    display: none;
+    align-items: flex-end;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--cinza);
+    border: 1px solid var(--borda);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    padding: 16px 16px calc(20px + var(--safe-bottom));
+    width: 100%;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.8);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-handle {
+    width: 36px; height: 4px;
+    background: var(--borda);
+    border-radius: 99px;
+    margin: 0 auto 14px;
+  }
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--amarelo);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .modal-desc {
+    font-size: 13px;
+    color: var(--texto2);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .modal-textarea {
+    width: 100%;
+    height: 140px;
+    background: var(--cinza2);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    color: var(--texto);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .modal-textarea:focus { border-color: var(--amarelo); }
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .btn-modal-cancel {
+    background: transparent;
+    border: 1px solid var(--borda);
+    color: var(--texto2);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s;
+  }
+  .btn-modal-primary {
+    background: var(--verde);
+    border: none;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    flex: 1;
+    transition: all 0.2s;
+  }
+  .btn-modal-copy {
+    background: var(--cinza3);
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s;
+  }
+  .btn-modal-merge {
+    background: rgba(59,130,246,0.12);
+    border: 1px solid var(--azul);
+    color: var(--azul);
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s;
+  }
+  .modal-alert {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+  }
+  .modal-alert.success { background: rgba(34,197,94,0.15); border: 1px solid var(--verde); color: var(--verde); }
+  .modal-alert.error   { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; }
+
+  /* HIDDEN */
+  .secao.hidden { display: none; }
+
+  /* Bump animation */
+  @keyframes bump {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  .fig-btn.bumping { animation: bump 0.18s ease; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row1">
+    <div class="logo">🏆 Copa <span>2026</span></div>
+    <div class="header-btns">
+      <button class="hbtn verde" onclick="abrirExportar()">📤</button>
+      <button class="hbtn azul"  onclick="abrirImportar()">📥</button>
+      <button class="hbtn red"   onclick="confirmarReset()">🗑</button>
+    </div>
+  </div>
+  <div class="search-row">
+    <span class="s-icon">🔍</span>
+    <input type="text" id="search" placeholder="Buscar seleção..." oninput="filtrarSecoes(this.value)" autocomplete="off" autocorrect="off" spellcheck="false">
+  </div>
+  <div class="stats-row">
+    <div class="stat-pill"><div class="dot dot-total"></div><span>Total:</span><strong id="stat-total">0</strong></div>
+    <div class="stat-pill"><div class="dot dot-unica"></div><span>Únicas:</span><strong id="stat-unicas">0</strong></div>
+    <div class="stat-pill"><div class="dot dot-rep"></div><span>Rep.:</span><strong id="stat-repetidas">0</strong></div>
+    <div class="pct-pill">🎯 <strong id="stat-pct">0%</strong> <span style="color:var(--texto2);font-size:10px;font-weight:400" id="stat-total-label">de 985</span></div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</header>
+
+<main>
+  <div class="legenda">
+    <span class="leg-lbl">Legenda:</span>
+    <div class="legenda-item"><div class="leg-box leg-vazia">—</div><span>Não tenho</span></div>
+    <div class="legenda-item"><div class="leg-box leg-unica">✓</div><span>Tenho</span></div>
+    <div class="legenda-item"><div class="leg-box leg-2x">2</div><span>Repetida</span></div>
+    <div class="legenda-item"><div class="leg-box leg-3x">3+</div><span>Muitas</span></div>
+    <span class="leg-hint">Toque p/ adicionar · Segure p/ opções</span>
+  </div>
+  <div id="album"></div>
+</main>
+
+<!-- Bottom bar -->
+<div class="bottom-bar">
+  <div class="bb-stat">
+    <div class="bb-val bb-val-total" id="bb-total">0</div>
+    <div class="bb-lbl">Total</div>
+  </div>
+  <div class="bb-divider"></div>
+  <div class="bb-stat">
+    <div class="bb-val bb-val-unica" id="bb-unicas">0</div>
+    <div class="bb-lbl">Únicas</div>
+  </div>
+  <div class="bb-divider"></div>
+  <div class="bb-stat">
+    <div class="bb-val bb-val-rep" id="bb-rep">0</div>
+    <div class="bb-lbl">Repetidas</div>
+  </div>
+  <div class="bb-divider"></div>
+  <div class="bb-pct">
+    <div class="bb-pct-val" id="bb-pct">0%</div>
+    <div class="bb-pct-lbl">Progresso</div>
+  </div>
+</div>
+
+<!-- Bottom Sheet (context menu mobile) -->
+<div class="sheet-overlay" id="sheet-overlay" onclick="fecharSheet(event)">
+  <div class="sheet-box" id="sheet-box">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="sheet-title">—</div>
+    <div class="sheet-sub" id="sheet-sub">Figurinha</div>
+    <div class="sheet-counter">
+      <button class="sheet-minus" onclick="sheetDec()">−</button>
+      <div>
+        <div class="sheet-count-val" id="sheet-val">0</div>
+        <div class="sheet-count-label">cópias</div>
+      </div>
+      <button class="sheet-plus" onclick="sheetInc()">+</button>
+    </div>
+    <div class="sheet-actions">
+      <button class="sheet-action-btn btn-set1"   onclick="sheetSet1()">✅ Definir como 1×</button>
+      <button class="sheet-action-btn btn-zero"   onclick="sheetZero()">🗑 Remover</button>
+      <button class="sheet-action-btn btn-cancel" onclick="fecharSheet()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Exportar -->
+<div class="modal-overlay" id="modal-exportar">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📤 Exportar coleção</div>
+    <div class="modal-desc">Copie o texto abaixo e salve. Para restaurar, use <strong>Importar</strong> e cole este texto.</div>
+    <textarea class="modal-textarea" id="export-textarea" readonly></textarea>
+    <div class="modal-actions">
+      <button class="btn-modal-cancel" onclick="fecharModal('modal-exportar')">Fechar</button>
+      <button class="btn-modal-copy"   onclick="copiarExport()">📋 Copiar</button>
+    </div>
+    <div class="modal-alert success" id="export-alert">✅ Copiado!</div>
+  </div>
+</div>
+
+<!-- Modal Importar -->
+<div class="modal-overlay" id="modal-importar">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📥 Importar coleção</div>
+    <div class="modal-desc">Cole o texto exportado. <strong>Substituir</strong> apaga a coleção atual. <strong>Mesclar</strong> combina com a atual.</div>
+    <textarea class="modal-textarea" id="import-textarea" placeholder="Cole aqui o código exportado..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-modal-cancel" onclick="fecharModal('modal-importar')">Cancelar</button>
+      <button class="btn-modal-merge"  onclick="importarMesclar()">🔀 Mesclar</button>
+      <button class="btn-modal-primary" onclick="importarSubstituir()">✅ Substituir</button>
+    </div>
+    <div class="modal-alert" id="import-alert"></div>
+  </div>
+</div>
+
+<script>
+// ===================== DADOS =====================
+function r(sigla, n) {
+  return Array.from({length: n}, (_, i) => `${sigla}-${i+1}`);
+}
+
+const SECOES = [
+  { sigla: "FWC", nome: "Copa do Mundo 2026", bandeira: "🏆", especial: true, grupo: "ESPECIAL",
+    figs: ["FWC-9","FWC-10","FWC-11","FWC-12","FWC-13","FWC-14","FWC-15","FWC-16","FWC-17","FWC-18","FWC-19"] },
+  { sigla: "CC",  nome: "Figurinhas Coca-Cola", bandeira: "🥤", especial: true, grupo: "ESPECIAL",
+    figs: ["CC-1","CC-2","CC-3","CC-4","CC-5","CC-6","CC-7","CC-8","CC-9","CC-10","CC-11","CC-12","CC-13","CC-14"] },
+  // GRUPO A
+  { sigla:"MEX", nome:"México",         bandeira:"🇲🇽", grupo:"A", figs:r("MEX",20) },
+  { sigla:"RSA", nome:"África do Sul",  bandeira:"🇿🇦", grupo:"A", figs:r("RSA",20) },
+  { sigla:"KOR", nome:"Coreia do Sul",  bandeira:"🇰🇷", grupo:"A", figs:r("KOR",20) },
+  { sigla:"CZE", nome:"Rep. Tcheca",    bandeira:"🇨🇿", grupo:"A", figs:r("CZE",20) },
+  // GRUPO B
+  { sigla:"CAN", nome:"Canadá",         bandeira:"🇨🇦", grupo:"B", figs:r("CAN",20) },
+  { sigla:"BIH", nome:"Bósnia",         bandeira:"🇧🇦", grupo:"B", figs:r("BIH",20) },
+  { sigla:"QAT", nome:"Catar",          bandeira:"🇶🇦", grupo:"B", figs:r("QAT",20) },
+  { sigla:"SUI", nome:"Suíça",          bandeira:"🇨🇭", grupo:"B", figs:r("SUI",20) },
+  // GRUPO C
+  { sigla:"BRA", nome:"Brasil",         bandeira:"🇧🇷", grupo:"C", figs:r("BRA",20) },
+  { sigla:"MAR", nome:"Marrocos",       bandeira:"🇲🇦", grupo:"C", figs:r("MAR",20) },
+  { sigla:"HAI", nome:"Haiti",          bandeira:"🇭🇹", grupo:"C", figs:r("HAI",20) },
+  { sigla:"SCO", nome:"Escócia",        bandeira:"🏴󠁧󠁢󠁳󠁣󠁴󠁿", grupo:"C", figs:r("SCO",20) },
+  // GRUPO D
+  { sigla:"USA", nome:"Estados Unidos", bandeira:"🇺🇸", grupo:"D", figs:r("USA",20) },
+  { sigla:"PAR", nome:"Paraguai",       bandeira:"🇵🇾", grupo:"D", figs:r("PAR",20) },
+  { sigla:"AUS", nome:"Austrália",      bandeira:"🇦🇺", grupo:"D", figs:r("AUS",20) },
+  { sigla:"TUR", nome:"Turquia",        bandeira:"🇹🇷", grupo:"D", figs:r("TUR",20) },
+  // GRUPO E
+  { sigla:"GER", nome:"Alemanha",       bandeira:"🇩🇪", grupo:"E", figs:r("GER",20) },
+  { sigla:"CUW", nome:"Curaçao",        bandeira:"🇨🇼", grupo:"E", figs:r("CUW",20) },
+  { sigla:"CIV", nome:"Costa do Marfim",bandeira:"🇨🇮", grupo:"E", figs:r("CIV",20) },
+  { sigla:"ECU", nome:"Equador",        bandeira:"🇪🇨", grupo:"E", figs:r("ECU",20) },
+  // GRUPO F
+  { sigla:"NED", nome:"Holanda",        bandeira:"🇳🇱", grupo:"F", figs:r("NED",20) },
+  { sigla:"JPN", nome:"Japão",          bandeira:"🇯🇵", grupo:"F", figs:r("JPN",20) },
+  { sigla:"SWE", nome:"Suécia",         bandeira:"🇸🇪", grupo:"F", figs:r("SWE",20) },
+  { sigla:"TUN", nome:"Tunísia",        bandeira:"🇹🇳", grupo:"F", figs:r("TUN",20) },
+  // GRUPO G
+  { sigla:"BEL", nome:"Bélgica",        bandeira:"🇧🇪", grupo:"G", figs:r("BEL",20) },
+  { sigla:"EGY", nome:"Egito",          bandeira:"🇪🇬", grupo:"G", figs:r("EGY",20) },
+  { sigla:"IRN", nome:"Irã",            bandeira:"🇮🇷", grupo:"G", figs:r("IRN",20) },
+  { sigla:"NZL", nome:"Nova Zelândia",  bandeira:"🇳🇿", grupo:"G", figs:r("NZL",20) },
+  // GRUPO H
+  { sigla:"ESP", nome:"Espanha",        bandeira:"🇪🇸", grupo:"H", figs:r("ESP",20) },
+  { sigla:"CPV", nome:"Cabo Verde",     bandeira:"🇨🇻", grupo:"H", figs:r("CPV",20) },
+  { sigla:"KSA", nome:"Arábia Saudita", bandeira:"🇸🇦", grupo:"H", figs:r("KSA",20) },
+  { sigla:"URU", nome:"Uruguai",        bandeira:"🇺🇾", grupo:"H", figs:r("URU",20) },
+  // GRUPO I
+  { sigla:"FRA", nome:"França",         bandeira:"🇫🇷", grupo:"I", figs:r("FRA",20) },
+  { sigla:"SEN", nome:"Senegal",        bandeira:"🇸🇳", grupo:"I", figs:r("SEN",20) },
+  { sigla:"IRQ", nome:"Iraque",         bandeira:"🇮🇶", grupo:"I", figs:r("IRQ",20) },
+  { sigla:"NOR", nome:"Noruega",        bandeira:"🇳🇴", grupo:"I", figs:r("NOR",20) },
+  // GRUPO J
+  { sigla:"ARG", nome:"Argentina",      bandeira:"🇦🇷", grupo:"J", figs:r("ARG",20) },
+  { sigla:"ALG", nome:"Argélia",        bandeira:"🇩🇿", grupo:"J", figs:r("ALG",20) },
+  { sigla:"AUT", nome:"Áustria",        bandeira:"🇦🇹", grupo:"J", figs:r("AUT",20) },
+  { sigla:"JOR", nome:"Jordânia",       bandeira:"🇯🇴", grupo:"J", figs:r("JOR",20) },
+  // GRUPO K
+  { sigla:"POR", nome:"Portugal",       bandeira:"🇵🇹", grupo:"K", figs:r("POR",20) },
+  { sigla:"COD", nome:"Congo",          bandeira:"🇨🇩", grupo:"K", figs:r("COD",20) },
+  { sigla:"UZB", nome:"Uzbequistão",    bandeira:"🇺🇿", grupo:"K", figs:r("UZB",20) },
+  { sigla:"COL", nome:"Colômbia",       bandeira:"🇨🇴", grupo:"K", figs:r("COL",20) },
+  // GRUPO L
+  { sigla:"ENG", nome:"Inglaterra",     bandeira:"🏴󠁧󠁢󠁥󠁮󠁧󠁿", grupo:"L", figs:r("ENG",20) },
+  { sigla:"CRO", nome:"Croácia",        bandeira:"🇭🇷", grupo:"L", figs:r("CRO",20) },
+  { sigla:"GHA", nome:"Gana",           bandeira:"🇬🇭", grupo:"L", figs:r("GHA",20) },
+  { sigla:"PAN", nome:"Panamá",         bandeira:"🇵🇦", grupo:"L", figs:r("PAN",20) },
+];
+
+const TOTAL_ALBUM = SECOES.reduce((acc,s) => acc + s.figs.length, 0);
+const STORAGE_KEY = "copa2026_v3";
+let estado = {};
+
+function salvar() { localStorage.setItem(STORAGE_KEY, JSON.stringify(estado)); }
+function carregar() {
+  try { const s = localStorage.getItem(STORAGE_KEY); if (s) estado = JSON.parse(s); }
+  catch(e) { estado = {}; }
+}
+
+// ===================== RENDER =====================
+function renderAlbum() {
+  const container = document.getElementById("album");
+  container.innerHTML = "";
+  let grupoAtual = null;
+
+  SECOES.forEach(sec => {
+    if (sec.grupo && sec.grupo !== grupoAtual && sec.grupo !== "ESPECIAL") {
+      grupoAtual = sec.grupo;
+      const sep = document.createElement("div");
+      sep.className = "grupo-sep";
+      sep.textContent = `GRUPO ${grupoAtual}`;
+      container.appendChild(sep);
+    }
+
+    const div = document.createElement("div");
+    div.className = "secao";
+    div.id = `sec-${sec.sigla}`;
+    div.dataset.nome = `${sec.nome} ${sec.sigla} ${sec.grupo||''}`.toLowerCase();
+
+    const total = sec.figs.length;
+    const unicas = sec.figs.filter(f => (estado[f]||0) >= 1).length;
+    const grupoTag = sec.grupo && sec.grupo !== "ESPECIAL"
+      ? `<span class="secao-grupo">GRP ${sec.grupo}</span>` : '';
+
+    div.innerHTML = `
+      <div class="secao-header" onclick="toggleSecao('${sec.sigla}')">
+        <span class="secao-flag">${sec.bandeira}</span>
+        <span class="secao-titulo">${sec.nome}</span>
+        <span class="secao-sigla">${sec.sigla}</span>
+        ${grupoTag}
+        <span class="secao-prog"><strong id="prog-${sec.sigla}">${unicas}</strong>/${total}</span>
+        <span class="secao-toggle open" id="tog-${sec.sigla}">▲</span>
+      </div>
+      <div class="figurinhas-grid" id="grid-${sec.sigla}">
+        ${sec.figs.map(f => renderFig(f, sec.especial)).join('')}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function renderFig(cod, especial) {
+  const qt = estado[cod] || 0;
+  const cls = `fig-btn${especial ? ' especial' : ''} count-${Math.min(qt,5)}`;
+  const label = cod.includes('-') ? cod.split('-')[1] : cod;
+  return `<button class="${cls}" data-cod="${cod}" data-count="${qt}" onclick="clickFig('${cod}')"><span class="fig-num">${label}</span></button>`;
+}
+
+// Long press setup
+let pressTimer = null;
+let pressTarget = null;
+
+document.addEventListener('touchstart', e => {
+  const btn = e.target.closest('.fig-btn');
+  if (!btn) return;
+  pressTarget = btn;
+  pressTimer = setTimeout(() => {
+    const cod = btn.dataset.cod;
+    if (cod) abrirSheet(cod);
+  }, 500);
+}, { passive: true });
+
+document.addEventListener('touchend', () => {
+  clearTimeout(pressTimer);
+  pressTimer = null;
+}, { passive: true });
+
+document.addEventListener('touchmove', () => {
+  clearTimeout(pressTimer);
+  pressTimer = null;
+}, { passive: true });
+
+// Also allow right-click on desktop
+document.addEventListener('contextmenu', e => {
+  const btn = e.target.closest('.fig-btn');
+  if (!btn) return;
+  e.preventDefault();
+  abrirSheet(btn.dataset.cod);
+});
+
+function atualizarBotao(cod) {
+  const btn = document.querySelector(`[data-cod="${cod}"]`);
+  if (!btn) return;
+  const qt = estado[cod] || 0;
+  const isEsp = btn.classList.contains('especial');
+  btn.className = `fig-btn${isEsp ? ' especial' : ''} count-${Math.min(qt,5)}`;
+  btn.dataset.count = qt;
+}
+
+function atualizarProgSecao(sigla) {
+  const sec = SECOES.find(s => s.sigla === sigla);
+  if (!sec) return;
+  const unicas = sec.figs.filter(f => (estado[f]||0) >= 1).length;
+  const el = document.getElementById(`prog-${sigla}`);
+  if (el) el.textContent = unicas;
+}
+
+// ===================== STATS =====================
+function calcStats() {
+  let total = 0, unicas = 0, repetidas = 0;
+  for (const [cod, qt] of Object.entries(estado)) {
+    if (qt <= 0) continue;
+    total += qt; unicas++;
+    if (qt > 1) repetidas += (qt - 1);
+  }
+  return { total, unicas, repetidas };
+}
+
+function atualizarStats() {
+  const { total, unicas, repetidas } = calcStats();
+  const pct = Math.round((unicas / TOTAL_ALBUM) * 100);
+
+  document.getElementById("stat-total").textContent     = total;
+  document.getElementById("stat-unicas").textContent    = unicas;
+  document.getElementById("stat-repetidas").textContent = repetidas;
+  document.getElementById("stat-pct").textContent       = pct + "%";
+  document.getElementById("stat-total-label").textContent = `de ${TOTAL_ALBUM}`;
+  document.getElementById("progress-fill").style.width  = pct + "%";
+
+  document.getElementById("bb-total").textContent  = total;
+  document.getElementById("bb-unicas").textContent = unicas;
+  document.getElementById("bb-rep").textContent    = repetidas;
+  document.getElementById("bb-pct").textContent    = pct + "%";
+}
+
+// ===================== INTERAÇÕES =====================
+function clickFig(cod) {
+  estado[cod] = (estado[cod] || 0) + 1;
+  salvar();
+  atualizarBotao(cod);
+  const sigla = cod.split('-')[0];
+  atualizarProgSecao(sigla);
+  atualizarStats();
+  animarClick(cod);
+}
+
+function animarClick(cod) {
+  const btn = document.querySelector(`[data-cod="${cod}"]`);
+  if (!btn) return;
+  btn.classList.remove('bumping');
+  void btn.offsetWidth; // reflow
+  btn.classList.add('bumping');
+  setTimeout(() => btn.classList.remove('bumping'), 200);
+}
+
+function toggleSecao(sigla) {
+  const grid = document.getElementById(`grid-${sigla}`);
+  const tog  = document.getElementById(`tog-${sigla}`);
+  grid.classList.toggle("collapsed");
+  tog.classList.toggle("open");
+}
+
+// ===================== BOTTOM SHEET =====================
+let sheetCod = null;
+
+function abrirSheet(cod) {
+  sheetCod = cod;
+  const qt = estado[cod] || 0;
+  document.getElementById("sheet-title").textContent = cod;
+  const sec = SECOES.find(s => s.figs.includes(cod));
+  document.getElementById("sheet-sub").textContent = sec ? `${sec.bandeira} ${sec.nome}` : "Figurinha";
+  document.getElementById("sheet-val").textContent = qt;
+  document.getElementById("sheet-overlay").classList.add("open");
+}
+
+function fecharSheet(e) {
+  if (e && e.target !== document.getElementById("sheet-overlay")) return;
+  document.getElementById("sheet-overlay").classList.remove("open");
+  sheetCod = null;
+}
+
+function sheetInc() {
+  if (!sheetCod) return;
+  estado[sheetCod] = (estado[sheetCod] || 0) + 1;
+  document.getElementById("sheet-val").textContent = estado[sheetCod];
+  salvar(); atualizarBotao(sheetCod);
+  atualizarProgSecao(sheetCod.split('-')[0]);
+  atualizarStats();
+}
+
+function sheetDec() {
+  if (!sheetCod) return;
+  estado[sheetCod] = Math.max(0, (estado[sheetCod] || 0) - 1);
+  document.getElementById("sheet-val").textContent = estado[sheetCod];
+  salvar(); atualizarBotao(sheetCod);
+  atualizarProgSecao(sheetCod.split('-')[0]);
+  atualizarStats();
+}
+
+function sheetSet1() {
+  if (!sheetCod) return;
+  estado[sheetCod] = 1;
+  document.getElementById("sheet-val").textContent = 1;
+  salvar(); atualizarBotao(sheetCod);
+  atualizarProgSecao(sheetCod.split('-')[0]);
+  atualizarStats();
+  document.getElementById("sheet-overlay").classList.remove("open");
+  sheetCod = null;
+}
+
+function sheetZero() {
+  if (!sheetCod) return;
+  estado[sheetCod] = 0;
+  salvar(); atualizarBotao(sheetCod);
+  atualizarProgSecao(sheetCod.split('-')[0]);
+  atualizarStats();
+  document.getElementById("sheet-overlay").classList.remove("open");
+  sheetCod = null;
+}
+
+// ===================== BUSCA =====================
+function filtrarSecoes(q) {
+  const termo = q.toLowerCase().trim();
+  document.querySelectorAll(".secao").forEach(sec => {
+    const nome = sec.dataset.nome || "";
+    sec.classList.toggle("hidden", termo !== "" && !nome.includes(termo));
+  });
+  document.querySelectorAll(".grupo-sep").forEach(sep => {
+    sep.style.display = "";
+  });
+}
+
+// ===================== RESET =====================
+function confirmarReset() {
+  if (confirm("⚠️ Tem certeza? Isso vai apagar TODAS as suas figurinhas!")) {
+    estado = {};
+    salvar();
+    renderAlbum();
+    atualizarStats();
+  }
+}
+
+// ===================== EXPORTAR / IMPORTAR =====================
+function abrirExportar() {
+  const dados = {};
+  for (const [cod, qt] of Object.entries(estado)) { if (qt > 0) dados[cod] = qt; }
+  document.getElementById("export-textarea").value = JSON.stringify(dados, null, 2);
+  document.getElementById("export-alert").style.display = "none";
+  document.getElementById("modal-exportar").classList.add("open");
+}
+
+function copiarExport() {
+  const ta = document.getElementById("export-textarea");
+  ta.select(); ta.setSelectionRange(0, 99999);
+  try { navigator.clipboard.writeText(ta.value).catch(() => document.execCommand("copy")); }
+  catch(e) { document.execCommand("copy"); }
+  const alerta = document.getElementById("export-alert");
+  alerta.style.display = "block";
+  setTimeout(() => { alerta.style.display = "none"; }, 2500);
+}
+
+function abrirImportar() {
+  document.getElementById("import-textarea").value = "";
+  document.getElementById("import-alert").style.display = "none";
+  document.getElementById("import-alert").className = "modal-alert";
+  document.getElementById("modal-importar").classList.add("open");
+}
+
+function fecharModal(id) { document.getElementById(id).classList.remove("open"); }
+
+function mostrarAlertaImport(msg, tipo) {
+  const el = document.getElementById("import-alert");
+  el.textContent = msg; el.className = `modal-alert ${tipo}`; el.style.display = "block";
+}
+
+function parsearImport() {
+  const txt = document.getElementById("import-textarea").value.trim();
+  if (!txt) { mostrarAlertaImport("❌ Cole o código exportado no campo acima.", "error"); return null; }
+  try {
+    const dados = JSON.parse(txt);
+    if (typeof dados !== "object" || Array.isArray(dados)) throw new Error();
+    return dados;
+  } catch(e) { mostrarAlertaImport("❌ Código inválido. Cole o texto sem alterações.", "error"); return null; }
+}
+
+function importarSubstituir() {
+  const dados = parsearImport(); if (!dados) return;
+  estado = {};
+  for (const [cod, qt] of Object.entries(dados)) { if (typeof qt === "number" && qt > 0) estado[cod] = qt; }
+  salvar(); renderAlbum(); atualizarStats();
+  mostrarAlertaImport("✅ Coleção importada com sucesso!", "success");
+  setTimeout(() => fecharModal("modal-importar"), 1500);
+}
+
+function importarMesclar() {
+  const dados = parsearImport(); if (!dados) return;
+  for (const [cod, qt] of Object.entries(dados)) {
+    if (typeof qt === "number" && qt > 0) estado[cod] = Math.max(estado[cod] || 0, qt);
+  }
+  salvar(); renderAlbum(); atualizarStats();
+  mostrarAlertaImport("✅ Coleção mesclada!", "success");
+  setTimeout(() => fecharModal("modal-importar"), 1500);
+}
+
+// Fechar modais clicando no overlay
+["modal-exportar","modal-importar"].forEach(id => {
+  document.getElementById(id).addEventListener("click", function(e) {
+    if (e.target === this) fecharModal(id);
+  });
+});
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") {
+  fecharModal("modal-exportar"); fecharModal("modal-importar");
+  document.getElementById("sheet-overlay").classList.remove("open");
+}});
+
+// ===================== INIT =====================
+carregar();
+renderAlbum();
+atualizarStats();
+</script>
+</body>
+</html>
